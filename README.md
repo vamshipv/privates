@@ -1,8 +1,9 @@
-# Homies Hangout 🛋️
+# Homies 🛋️
 
-Just a chill 3D space to hang out, mess around with physics, and talk.
+3D space to hang out, mess around with physics, and talk.
 
 You can walk around, stack boxes, launch balls across the room, flop into ragdoll, and chat over proximity voice. 
+Install the file from the requirements instructions
 
 ### Jump In
 Grab Godot 4.3 (or run the exe), open the project, and you're in. 
