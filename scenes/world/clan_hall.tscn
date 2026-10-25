@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/clan_hall.gd" id="1_hall"]
+[ext_resource type="PackedScene" path="res://scenes/world/lighting_environment.tscn" id="2_light"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(81, 0.4, 81)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ceiling"]
+size = Vector3(81, 0.4, 81)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_z"]
+size = Vector3(81, 18, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_x"]
+size = Vector3(1, 18, 81)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_table"]
+size = Vector3(6, 0.75, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_table"]
+size = Vector3(6, 0.75, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_table"]
+albedo_color = Color(0.18, 0.22, 0.28, 1)
+metallic = 0.6
+roughness = 0.35
+
+[node name="ClanHall" type="Node3D"]
+script = ExtResource("1_hall")
+
+[node name="LightingEnvironment" parent="." instance=ExtResource("2_light")]
+
+[node name="EnvironmentSlot" type="Node3D" parent="."]
+
+[node name="StaticColliders" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 7
+
+[node name="FloorCol" type="CollisionShape3D" parent="StaticColliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+shape = SubResource("BoxShape3D_floor")
+
+[node name="CeilingCol" type="CollisionShape3D" parent="StaticColliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 0)
+shape = SubResource("BoxShape3D_ceiling")
+
+[node name="WallNorth" type="CollisionShape3D" parent="StaticColliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.5, -40.5)
+shape = SubResource("BoxShape3D_wall_z")
+
+[node name="WallSouth" type="CollisionShape3D" parent="StaticColliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.5, 40.5)
+shape = SubResource("BoxShape3D_wall_z")
+
+[node name="WallEast" type="CollisionShape3D" parent="StaticColliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5, 8.5, 0)
+shape = SubResource("BoxShape3D_wall_x")
+
+[node name="WallWest" type="CollisionShape3D" parent="StaticColliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.5, 8.5, 0)
+shape = SubResource("BoxShape3D_wall_x")
+
+[node name="TableCol" type="CollisionShape3D" parent="StaticColliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+shape = SubResource("BoxShape3D_table")
+
+[node name="TableMesh" type="MeshInstance3D" parent="StaticColliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+mesh = SubResource("BoxMesh_table")
+surface_material_override/0 = SubResource("StandardMaterial3D_table")
+
+[node name="GrandChandelierLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
+light_color = Color(0.92, 0.96, 1, 1)
+light_energy = 3.2
+shadow_enabled = true
+omni_range = 55.0
+omni_attenuation = 0.85
+
+[node name="CeilingLightNorth" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, -24)
+light_color = Color(0.2, 0.7, 1, 1)
+light_energy = 2.4
+shadow_enabled = true
+omni_range = 38.0
+
+[node name="CeilingLightSouth" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 24)
+light_color = Color(1, 0.75, 0.35, 1)
+light_energy = 2.4
+shadow_enabled = true
+omni_range = 38.0

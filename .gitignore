@@ -1,0 +1,14 @@
+# Godot 4 .gitignore
+.godot/
+*.translation
+
+# Godot executables
+Godot_v4*.exe
+
+# Mono/C# specific
+.mono/
+[Gg]odot[Ss]harp/
+
+# System / OS
+.DS_Store
+Thumbs.db
