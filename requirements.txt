@@ -1,0 +1,5 @@
+# Homies Hangout Requirements
+# Engine: Godot Engine 4.3-stable (Standard 64-bit)
+# Download: https://godotengine.org/download/archive/4.3-stable/
+# Platform: Windows 10/11, macOS, or Linux with Vulkan support (Forward+ renderer)
+# Audio: Microphone enabled for 3D proximity voice chat
